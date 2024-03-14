@@ -1,0 +1,20 @@
+upstream node_server {
+	server localhost:8000 fail_timeout=0;
+}
+
+upstream python {
+	server localhost:8001 fail_timeout=0;
+}
+
+server {
+	
+	listen <%= ENV["PORT"] %>;
+	server_name _;
+	
+	location / {
+		proxy_pass http://node_server;
+	}
+	location ^~ /python {
+		proxy_pass http://python_server;
+	}
+}
