@@ -1,1 +1,1 @@
-web: bin/run & npm start & python3 server.py
+web: ./start.sh
